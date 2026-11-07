@@ -69,7 +69,7 @@
     const hint = 'Select a label to highlight one part and read a short explanation. Hover or focus on the diagram for the same notes.';
     info.textContent = hint;
 
-    const buttons = [...layers.map(([id, label]) => [id, label]), ['', 'Show all']].map(([id, label]) => {
+    const buttons = [...layers, ['', 'Show all']].map(([id, label]) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'rs-btn';

@@ -56,7 +56,7 @@
       <div class="rs-figs">
         <figure class="rs-fig" id="fig-1" data-svg="assets/svg/research-workflow.svg">
           <div class="rs-fig__frame">
-            <img src="assets/svg/research-workflow.svg" alt="Eight numbered steps from physical problem to engineering interpretation, with calibration and validation feeding back into the model." width="800" height="440" loading="lazy" decoding="async">
+            <img src="assets/svg/research-workflow.svg" alt="Eight numbered steps in a snaking sequence: physical problem, conceptual model, governing equations, constitutive laws, implementation, calibration and validation, simulation and interpretation, with a feedback arrow from calibration back to the model." width="800" height="440" loading="lazy" decoding="async">
           </div>
           <figcaption><strong>Figure 1.</strong> Numerical research workflow. The sequence runs from the physical problem to engineering interpretation, with calibration feeding back into the model. <span class="rs-fig__note">Schematic illustration drawn for this website; not measured or simulated data.</span></figcaption>
         </figure>
@@ -81,13 +81,13 @@
       <div class="rs-figs">
         <figure class="rs-fig" id="fig-2" data-svg="assets/svg/thm-coupling.svg" data-layers="[[&quot;thermal&quot;, &quot;Thermal field&quot;], [&quot;hydraulic&quot;, &quot;Hydraulic flow&quot;], [&quot;mechanical&quot;, &quot;Mechanical loading&quot;]]">
           <div class="rs-fig__frame">
-            <img src="assets/svg/thm-coupling.svg" alt="Layered soil with heat flux and isotherms, groundwater flow and pore-water pressure, and a surface load producing a stress bulb and settlement." width="800" height="470" loading="lazy" decoding="async">
+            <img src="assets/svg/thm-coupling.svg" alt="Cross-section of three soil layers with downward heat flux and isotherms, groundwater flow and a pore-water pressure profile, and a surface load producing a stress bulb and surface settlement. A side panel shows the coupling between thermal, hydraulic and mechanical fields." width="800" height="470" loading="lazy" decoding="async">
           </div>
           <figcaption><strong>Figure 2.</strong> THM coupling in a soil profile. Heat flow, groundwater flow and surface loading act on the same layered ground. <span class="rs-fig__note">Schematic illustration drawn for this website; not measured or simulated data.</span></figcaption>
         </figure>
         <figure class="rs-fig" id="fig-3" data-svg="assets/svg/multiphysics-model.svg" data-layers="[[&quot;th-hy&quot;, &quot;Thermal–hydraulic&quot;], [&quot;t-m&quot;, &quot;Thermo-mechanical&quot;], [&quot;h-m&quot;, &quot;Hydro-mechanical&quot;], [&quot;material&quot;, &quot;Material behaviour&quot;]]">
           <div class="rs-fig__frame">
-            <img src="assets/svg/multiphysics-model.svg" alt="Temperature, groundwater flow and deformation linked by labelled coupling mechanisms, with material behaviour at the centre." width="800" height="456" loading="lazy" decoding="async">
+            <img src="assets/svg/multiphysics-model.svg" alt="Three field boxes for temperature, groundwater flow and deformation connected by double-headed arrows labelled with their coupling mechanisms, and a central ellipse for material behaviour that links all three." width="800" height="456" loading="lazy" decoding="async">
           </div>
           <figcaption><strong>Figure 3.</strong> Coupled multiphysics map. Pairs of fields interact through the mechanisms listed; constitutive laws link all three. <span class="rs-fig__note">Schematic illustration drawn for this website; not measured or simulated data.</span></figcaption>
         </figure>
@@ -109,7 +109,7 @@
       <div class="rs-figs">
         <figure class="rs-fig" id="fig-4" data-svg="assets/svg/permafrost-profile.svg" data-layers="[[&quot;active&quot;, &quot;Active layer&quot;], [&quot;table&quot;, &quot;Permafrost table&quot;], [&quot;frozen&quot;, &quot;Frozen ground&quot;], [&quot;profile&quot;, &quot;Temperature profile&quot;]]">
           <div class="rs-fig__frame">
-            <img src="assets/svg/permafrost-profile.svg" alt="Ground surface, active layer, permafrost table, frozen and unfrozen ground, a thaw front and a schematic summer and winter temperature profile." width="800" height="490" loading="lazy" decoding="async">
+            <img src="assets/svg/permafrost-profile.svg" alt="Vertical section showing the ground surface, active layer, permafrost table, frozen permafrost and unfrozen ground below, with a downward thaw front, thickness brackets and a schematic summer and winter temperature profile." width="800" height="490" loading="lazy" decoding="async">
           </div>
           <figcaption><strong>Figure 4.</strong> Permafrost cross-section. The active layer, permafrost table, frozen ground and a schematic summer and winter temperature profile. <span class="rs-fig__note">Schematic illustration drawn for this website; not measured or simulated data.</span></figcaption>
         </figure>
@@ -131,7 +131,7 @@
       <div class="rs-figs">
         <figure class="rs-fig" id="fig-5" data-svg="assets/svg/fem-model.svg" data-layers="[[&quot;mesh&quot;, &quot;Mesh&quot;], [&quot;bc&quot;, &quot;Boundary conditions&quot;], [&quot;load&quot;, &quot;Load&quot;], [&quot;response&quot;, &quot;Displacement and stress&quot;]]">
           <div class="rs-fig__frame">
-            <img src="assets/svg/fem-model.svg" alt="Graded mesh refined beneath a surface load, roller and pin supports, displacement vectors, stress concentrations and one four-node element." width="800" height="470" loading="lazy" decoding="async">
+            <img src="assets/svg/fem-model.svg" alt="A rectangular soil domain with a graded finite-element mesh refined beneath a surface load, roller supports on the sides, pinned supports at the base, displacement vectors and stress concentrations at the load edges. An inset shows a single four-node element with nodes and Gauss points." width="800" height="470" loading="lazy" decoding="async">
           </div>
           <figcaption><strong>Figure 5.</strong> Finite-element model of a loaded domain. A graded mesh, supports, loading, displacement vectors and one four-node element with Gauss points. <span class="rs-fig__note">Schematic illustration drawn for this website; not measured or simulated data.</span></figcaption>
         </figure>
@@ -151,7 +151,12 @@
         <p class="rs-related">Related: <a href="projects.html#proj-2">Loyola Campus project</a> · <a href="publications.html#pub-2">DBMC 2026 paper</a> · <a href="publications.html#pub-3">Volt-Age Summit</a></p>
       </div>
       <div class="rs-figs">
-
+        <figure class="rs-fig" id="fig-6" data-svg="assets/svg/geothermal-bhe.svg" data-layers="[[&quot;loop&quot;, &quot;Heat exchanger&quot;], [&quot;flux&quot;, &quot;Heat flow&quot;], [&quot;ground&quot;, &quot;Thermal influence&quot;], [&quot;water&quot;, &quot;Groundwater&quot;], [&quot;profile&quot;, &quot;Ground temperature&quot;]]">
+          <div class="rs-fig__frame">
+            <img src="assets/svg/geothermal-bhe.svg" alt="A building with a heat pump connected to a vertical borehole heat exchanger with a U-tube in a three-layer ground profile. Arrows show heat flowing from the ground to the loop in winter, a thermal influence zone around the borehole, groundwater flow carrying heat, and a ground temperature profile with a fading seasonal swing." width="800" height="480" loading="lazy" decoding="async">
+          </div>
+          <figcaption><strong>Figure 6.</strong> Ground-source heat exchange with a borehole. A heat pump circulates fluid through a U-tube in the ground; heat flow, the thermal influence zone, groundwater and the ground temperature profile are shown. <span class="rs-fig__note">Schematic illustration drawn for this website; not measured or simulated data.</span></figcaption>
+        </figure>
       </div>
     </div>
   </div>
@@ -168,11 +173,11 @@
         <p class="rs-related">Related: <a href="projects.html#proj-3">Stone-column seismic response (M.Eng. thesis)</a> · <a href="publications.html#pub-4">Thesis entry</a></p>
       </div>
       <div class="rs-figs">
-        <figure class="rs-fig" id="fig-6" data-svg="assets/svg/soil-structure-interaction.svg" data-layers="[[&quot;structure&quot;, &quot;Structure&quot;], [&quot;interface&quot;, &quot;Interface&quot;], [&quot;stress&quot;, &quot;Stress&quot;], [&quot;settlement&quot;, &quot;Settlement&quot;]]">
+        <figure class="rs-fig" id="fig-7" data-svg="assets/svg/soil-structure-interaction.svg" data-layers="[[&quot;structure&quot;, &quot;Structure&quot;], [&quot;interface&quot;, &quot;Interface&quot;], [&quot;stress&quot;, &quot;Stress&quot;], [&quot;settlement&quot;, &quot;Settlement&quot;]]">
           <div class="rs-fig__frame">
-            <img src="assets/svg/soil-structure-interaction.svg" alt="Column and footing on two soil layers showing the interface, soil reaction, stress isobars and an exaggerated settlement profile." width="800" height="540" loading="lazy" decoding="async">
+            <img src="assets/svg/soil-structure-interaction.svg" alt="A column and spread footing load a two-layer soil profile. The figure shows the soil–foundation interface, upward soil reaction, stress isobars beneath the footing and an exaggerated settlement profile plotted below the soil block." width="800" height="540" loading="lazy" decoding="async">
           </div>
-          <figcaption><strong>Figure 6.</strong> Footing and supporting soil. Interface, soil reaction, stress isobars and an exaggerated settlement profile. <span class="rs-fig__note">Schematic illustration drawn for this website; not measured or simulated data.</span></figcaption>
+          <figcaption><strong>Figure 7.</strong> Footing and supporting soil. Interface, soil reaction, stress isobars and an exaggerated settlement profile. <span class="rs-fig__note">Schematic illustration drawn for this website; not measured or simulated data.</span></figcaption>
         </figure>
       </div>
     </div>

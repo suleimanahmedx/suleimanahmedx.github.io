@@ -1,11 +1,12 @@
 /* Engineering figures: scoped to .fx-* so other pages are unaffected */
-.fx-fig{--f-bg:#0c1a28;--f-ink:#e8eff5;--f-mute:#9db0c0;--f-line:#7e93a5;--f-th:#ef7d57;--f-hy:#4aa3e8;--f-me:#e0b04a;--f-ice:#9bd8f0;--f-s1:#4a4036;--f-s2:#2f4a5c;--f-s3:#3a3f46;--f-grid:#5f7384;--f-ac:#5aa9e6;margin:0 0 28px}
-[data-theme="light"] .fx-fig{--f-bg:#f6f9fc;--f-ink:#0f2233;--f-mute:#465a6d;--f-line:#566b7e;--f-th:#bf4416;--f-hy:#12669f;--f-me:#8a5d00;--f-ice:#9fd0e6;--f-s1:#e6dccf;--f-s2:#cfe3f0;--f-s3:#dde2e7;--f-grid:#8fa2b3;--f-ac:#12669f}
+.fx-fig{--f-bg:#0c1a28;--f-ink:#e8eff5;--f-mute:#9db0c0;--f-line:#7e93a5;--f-th:#ef7d57;--f-hy:#4aa3e8;--f-me:#e0b04a;--f-s1:#4a4036;--f-s2:#2f4a5c;--f-s3:#3a3f46;margin:0 0 28px}
+[data-theme="light"] .fx-fig{--f-bg:#f6f9fc;--f-ink:#0f2233;--f-mute:#465a6d;--f-line:#566b7e;--f-th:#bf4416;--f-hy:#12669f;--f-me:#8a5d00;--f-s1:#e6dccf;--f-s2:#cfe3f0;--f-s3:#dde2e7}
 .fx-toc{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;padding:0;margin:26px 0 0}
 .fx-toc a{font-size:.92rem;text-decoration:none;border-bottom:1px solid currentColor;opacity:.85}
 .fx-toc a:hover,.fx-toc a:focus-visible{opacity:1}
 .fx-sec{scroll-margin-top:84px}
-.fx-h{margin:4px 0 22px}
+.fx-h{margin:4px 0 14px}
+.fx-why{max-width:68ch;margin:0 0 22px;line-height:1.6;opacity:.92}
 .fx-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:start}
 .fx-text p{line-height:1.7;margin:0 0 1em;max-width:62ch}
 .fx-link a{font-weight:600}
@@ -43,6 +44,11 @@
 .fx-det{margin:18px 0 0;border-top:1px solid rgba(127,147,165,.35);padding-top:10px;max-width:62ch}
 .fx-det summary{cursor:pointer;font-weight:600}
 .fx-det p{margin:10px 0 0}
+.fx-gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px 32px;margin:0}
+.fx-gloss dt{font-weight:600}
+.fx-gloss dd{margin:4px 0 0;line-height:1.55;opacity:.9}
+.fx-cta{border-top:1px solid rgba(127,147,165,.35);padding-top:26px;max-width:68ch}
+.fx-cta p{line-height:1.65}
 .fx-tip{position:fixed;z-index:50;max-width:min(320px,86vw);padding:9px 12px;font-size:.85rem;line-height:1.45;background:#0c1a28;color:#e8eff5;border:1px solid #5f7384;border-radius:4px;pointer-events:none;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 .fx-tip[hidden]{display:none}
 abbr[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}

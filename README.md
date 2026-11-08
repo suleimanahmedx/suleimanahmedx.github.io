@@ -1,38 +1,95 @@
 # Suleiman Ahmed
 
-Personal portfolio of Suleiman Ahmed, PhD researcher in geotechnical engineering at Concordia University, Montréal.
+**Personal Website & Professional Portfolio**
 
-**Live site:** https://suleimanahmedx.github.io/
+The source repository for [Suleiman Ahmed's personal website](https://suleimanahmedx.github.io/), showcasing academic background, research interests, publications, technical expertise, and professional resources.
+
+**Live Website:** [https://suleimanahmedx.github.io/](https://suleimanahmedx.github.io/)
 
 ## Features
-- Light and dark themes that follow the device; the sun/moon button overrides it for the session
-- Contact form: visitors write to me without ever seeing my email address
-- Publication filter, copy-citation buttons and a BibTeX download
-- Resource links filterable by type
-- Responsive layout, three-line mobile menu, back-to-top button
-- Scroll animations that switch off when the visitor prefers reduced motion
-- No frameworks, no build step
 
-## Structure
+- **Adaptive Themes:** Light and dark modes with automatic device preference detection and manual switching.
+- **Contact Form:** Allows visitors to send messages without exposing my email address.
+- **Publications:** Search and filter publications, copy citations, and download BibTeX references.
+- **Technical Resources:** Filterable collection of useful resources.
+- **Responsive Design:** Optimized for desktop, tablet, and mobile devices.
+- **Accessibility:** Respects reduced-motion preferences.
+- **Interactive Navigation:** Mobile menu, smooth scrolling, and back-to-top functionality.
+
+## Repository Structure
+
+```text
+.
+├── *.html                  # Website pages
+├── style.css               # Styling and themes
+├── site.js                 # Interactive functionality
+├── assets/                 # Images, logos and icons
+├── tools/
+│   └── check-links.py      # External link checker
+├── site.webmanifest
+├── favicon.svg
+├── apple-touch-icon.png
+├── robots.txt
+├── sitemap.xml
+└── 404.html
 ```
-*.html                pages
-style.css             styles, themes, print rules
-site.js               theme, menu, animations, filters, citations, contact form, content protection
-assets/               project illustrations, logos, og-image.png, app icons
-tools/check-links.py  checks every external link (run locally, needs internet)
-site.webmanifest, apple-touch-icon.png, favicon.svg, robots.txt, sitemap.xml, 404.html
+
+## Setup & Development
+
+**Requirements:** Git and a modern web browser.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/suleimanahmedx/suleimanahmedx.github.io.git
+cd suleimanahmedx.github.io
 ```
 
-## Deploying on GitHub Pages
-Push the contents of this folder to the root of the `suleimanahmedx.github.io` repository (branch `main`), with Pages set to deploy from that branch. The `_nojekyll` file stops GitHub from running Jekyll over the files.
+Start a local development server:
 
-## Content protection
-`site.js` blocks the right-click menu (except in form fields), Ctrl/Cmd+U, Ctrl/Cmd+S, F12 and the DevTools shortcuts. This is a deterrent only: a static site must send its HTML, CSS and JavaScript to every visitor, so the source can always be read from the browser menu, `view-source:` or a command-line download. To switch it off, set `ENABLE_CONTENT_PROTECTION` to `false` at the top of `site.js`.
+```bash
+python -m http.server 8000
+```
 
-## Maintenance
-- Update the `<lastmod>` dates in `sitemap.xml` and the "Last updated" line in each page footer when content changes.
-- Run `python3 tools/check-links.py` before publishing to catch dead external links.
+Visit `http://localhost:8000` in your browser.
 
-Software names and logos belong to their owners and show tools I use, not endorsement.
+Check external links (requires Python 3 and internet access):
 
-(c) 2026 Suleiman Ahmed. All rights reserved.
+```bash
+python tools/check-links.py
+```
+
+## Technologies
+
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Python
+- GitHub Pages
+
+## Contributions
+
+Bug reports, suggestions, and technical improvements are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make and test your changes.
+4. Submit a pull request with a clear description.
+
+Contributions should preserve the existing design, responsiveness, accessibility, and coding conventions.
+
+## Deployment
+
+Hosted and deployed through **GitHub Pages**.
+
+**Live Site:** [suleimanahmedx.github.io](https://suleimanahmedx.github.io/)
+
+## Copyright & Attribution
+
+© 2026 **Suleiman Ahmed**. All rights reserved.
+
+Third-party names, trademarks, and logos remain the property of their respective owners. Their inclusion does not imply affiliation, sponsorship, or endorsement.
+
+---
+
+*Designed and maintained by Suleiman Ahmed.*

@@ -1,5 +1,3 @@
-# Suleiman Ahmed
-
 **Personal Website & Professional Portfolio**
 
 The source repository for [Suleiman Ahmed's personal website](https://suleimanahmedx.github.io/), showcasing academic background, research interests, publications, technical expertise, and professional resources.
@@ -66,17 +64,6 @@ python tools/check-links.py
 - Vanilla JavaScript
 - Python
 - GitHub Pages
-
-## Contributions
-
-Bug reports, suggestions, and technical improvements are welcome.
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Make and test your changes.
-4. Submit a pull request with a clear description.
-
-Contributions should preserve the existing design, responsiveness, accessibility, and coding conventions.
 
 ## Deployment
 

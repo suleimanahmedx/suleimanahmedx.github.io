@@ -12,11 +12,7 @@
   /* Configuration                                                       */
   /* ------------------------------------------------------------------ */
 
-  // Web3Forms access key. It is public by design: it only routes messages to the
-  // owner's inbox and cannot read anything.
-  const FORM_KEY = '532d7608-bb62-471f-ab34-9cdb6f444b3d';
-  const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-  const FORM_SUBJECT = 'New message from suleimanahmedx.github.io';
+  const LINKEDIN_URL = 'https://www.linkedin.com/in/suleimanaliahmed';
 
   // Deterrent only. It stops casual right-click, view-source and save shortcuts.
   // It cannot hide the source: the browser must download the HTML, CSS and
@@ -389,92 +385,29 @@
   }
 
   /* ------------------------------------------------------------------ */
-  /* Contact form: spam checks, then a JSON request to Web3Forms         */
+  /* Contact form: nothing is sent; visitors are pointed to LinkedIn     */
   /* ------------------------------------------------------------------ */
 
   function initContactForm() {
     const form = $('#cf');
     if (!form) return;
 
-    const answer = $('#cf-q');
-    const question = $('#cf-ql');
-    const honeypot = $('.hp', form);
     const status = $('#cf-status');
-    const send = $('#cf-send');
-    const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let sum = 0;
-    let openedAt = Date.now();
-
-    const say = (message, kind) => {
-      status.textContent = message;
-      status.className = kind || '';
-    };
-    const newQuestion = () => {
-      const a = 2 + Math.floor(Math.random() * 8);
-      const b = 2 + Math.floor(Math.random() * 8);
-      sum = a + b;
-      question.textContent = `Quick check: what is ${a} + ${b}?`;
-      answer.value = '';
-    };
-    newQuestion();
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      const name = form.elements.namedItem('name').value.trim();
-      const email = form.elements.namedItem('email').value.trim();
-      const message = form.elements.namedItem('message').value.trim();
+      if (!status) return;
 
-      if (!name || !email || message.length < 10) {
-        say('Please fill in your name, a valid email and a message of at least 10 characters.', 'err');
-        return;
-      }
-      if (!EMAIL.test(email)) {
-        say('Please enter a valid email address.', 'err');
-        return;
-      }
-      if (honeypot.checked || Date.now() - openedAt < 3000) {
-        say('Please take a moment and try again.', 'err');
-        return;
-      }
-      if (parseInt(answer.value, 10) !== sum) {
-        say('That sum is not right. Try a new one.', 'err');
-        newQuestion();
-        answer.focus();
-        return;
-      }
+      status.className = 'ok';
+      status.textContent = 'Thank you for your interest. Messages are not sent from this page. Please contact me on ';
 
-      send.disabled = true;
-      say('Sending…');
-
-      fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: FORM_KEY,
-          subject: FORM_SUBJECT,
-          from_name: 'Portfolio website',
-          name,
-          email,
-          message,
-          botcheck: '',
-        }),
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          send.disabled = false;
-          if (result && result.success) {
-            form.reset();
-            newQuestion();
-            openedAt = Date.now();
-            say('Thank you. Your message has been sent.', 'ok');
-          } else {
-            say('Sorry, the message could not be sent. Please use LinkedIn.', 'err');
-          }
-        })
-        .catch(() => {
-          send.disabled = false;
-          say('Network problem. Please try again, or use LinkedIn.', 'err');
-        });
+      const link = doc.createElement('a');
+      link.href = LINKEDIN_URL;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = 'LinkedIn';
+      status.appendChild(link);
+      status.appendChild(doc.createTextNode(' instead.'));
     });
   }
 

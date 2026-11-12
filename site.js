@@ -1,22 +1,13 @@
 /*!
  * site.js - behaviour for suleimanahmedx.github.io
- *
  * Plain JavaScript, no dependencies, no build step. Each init function looks for
- * the elements it needs and does nothing when they are absent, so one file serves
- * every page.
+ * the elements it needs and does nothing when they are absent.
  */
 (() => {
   'use strict';
 
-  /* ------------------------------------------------------------------ */
-  /* Configuration                                                       */
-  /* ------------------------------------------------------------------ */
-
-  const LINKEDIN_URL = 'https://www.linkedin.com/in/suleimanaliahmed';
-
-  // Deterrent only. It stops casual right-click, view-source and save shortcuts.
-  // It cannot hide the source: the browser must download the HTML, CSS and
-  // JavaScript to render the page. Set to false to switch it off.
+  // Deterrent only. It cannot hide the source: the browser must download the
+  // HTML, CSS and JavaScript to render the page. Set to false to switch it off.
   const ENABLE_CONTENT_PROTECTION = true;
 
   const doc = document;
@@ -28,15 +19,10 @@
 
   root.classList.add('js');
 
-  /* ------------------------------------------------------------------ */
-  /* Theme: follows the device; the toggle overrides it for this session */
-  /* ------------------------------------------------------------------ */
-
   function initTheme() {
     const media = matchMedia('(prefers-color-scheme: dark)');
     const toggle = $('#theme-toggle');
     const themeColor = $('meta[name="theme-color"]');
-
     const systemTheme = () => (media.matches ? 'dark' : 'light');
     const readOverride = () => {
       try { return sessionStorage.getItem('theme'); } catch (e) { return null; }
@@ -45,7 +31,7 @@
       try {
         if (value) sessionStorage.setItem('theme', value);
         else sessionStorage.removeItem('theme');
-      } catch (e) { /* storage blocked: the override simply is not remembered */ }
+      } catch (e) { /* storage blocked */ }
     };
     const apply = (theme) => {
       root.setAttribute('data-theme', theme);
@@ -54,19 +40,14 @@
       }
       if (themeColor) themeColor.content = theme === 'dark' ? '#07101a' : '#f3f7fa';
     };
-
-    // Earlier versions persisted the choice in localStorage; clear that key.
     try { localStorage.removeItem('theme'); } catch (e) { /* ignore */ }
-
     apply(readOverride() || systemTheme());
-
     const onSystemChange = () => {
       writeOverride(null);
       apply(systemTheme());
     };
     if (media.addEventListener) media.addEventListener('change', onSystemChange);
     else if (media.addListener) media.addListener(onSystemChange);
-
     if (toggle) {
       toggle.addEventListener('click', () => {
         const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -76,21 +57,15 @@
     }
   }
 
-  /* ------------------------------------------------------------------ */
-  /* Mobile menu                                                         */
-  /* ------------------------------------------------------------------ */
-
   function initMenu() {
     const nav = $('#site-nav');
     const button = $('#menu-btn');
     if (!nav || !button) return;
-
     const setOpen = (open) => {
       nav.classList.toggle('open', open);
       button.setAttribute('aria-expanded', String(open));
       button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     };
-
     button.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
     doc.addEventListener('click', (event) => {
       if (!event.target.closest('.bar-in')) setOpen(false);
@@ -100,17 +75,12 @@
     });
   }
 
-  /* ------------------------------------------------------------------ */
-  /* Scroll progress bar and back-to-top button                          */
-  /* ------------------------------------------------------------------ */
-
   function initScrollUi() {
     const bar = $('.progress');
     const toTop = $('#totop');
     let current = 0;
     let target = 0;
     let animating = false;
-
     const tick = () => {
       current += (target - current) * 0.18;
       if (Math.abs(target - current) < 0.001) {
@@ -120,7 +90,6 @@
       if (bar) bar.style.transform = `scaleX(${current})`;
       if (animating) requestAnimationFrame(tick);
     };
-
     const update = () => {
       const scrollable = root.scrollHeight - innerHeight;
       target = scrollable > 0 ? Math.min(1, scrollY / scrollable) : 0;
@@ -130,7 +99,6 @@
         requestAnimationFrame(tick);
       }
     };
-
     if (toTop) {
       toTop.hidden = false;
       toTop.addEventListener('click', () => {
@@ -141,10 +109,6 @@
     addEventListener('resize', update);
     update();
   }
-
-  /* ------------------------------------------------------------------ */
-  /* Reveal on scroll, staggered delays and count-up numbers             */
-  /* ------------------------------------------------------------------ */
 
   function runCounters(scope) {
     $$('[data-count]', scope).forEach((node) => {
@@ -176,7 +140,6 @@
     $$('.ntiles .reveal, .themes .reveal').forEach((item, index) => {
       item.style.setProperty('--d', `${(index % 3) * 0.07}s`);
     });
-
     const targets = $$('.reveal, .stag > *');
     if (!('IntersectionObserver' in window)) {
       targets.forEach((item) => item.classList.add('in'));
@@ -194,17 +157,11 @@
     targets.forEach((item) => observer.observe(item));
   }
 
-  /* ------------------------------------------------------------------ */
-  /* Pointer spotlight and gentle tilt on cards                          */
-  /* ------------------------------------------------------------------ */
-
   function initSpotlight() {
     if (reduceMotion || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
     $$('.ntile, .themes li, .rcard').forEach((card) => {
       const tilts = card.classList.contains('ntile');
       let pending = null;
-
       const paint = () => {
         const box = card.getBoundingClientRect();
         const x = pending.clientX - box.left;
@@ -218,7 +175,6 @@
         }
         pending = null;
       };
-
       card.addEventListener('pointermove', (event) => {
         card.classList.add('tilting');
         const idle = pending === null;
@@ -232,10 +188,6 @@
     });
   }
 
-  /* ------------------------------------------------------------------ */
-  /* Page transition (skips new tabs, downloads and non-page links)      */
-  /* ------------------------------------------------------------------ */
-
   function initPageTransition() {
     doc.addEventListener('click', (event) => {
       const link = event.target.closest('a[href]');
@@ -243,24 +195,17 @@
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       if (link.target === '_blank' || link.hasAttribute('download')) return;
       if (/^(blob|data|mailto|tel):/.test(link.href)) return;
-
       const url = new URL(link.href, location.href);
       if (url.origin !== location.origin || url.pathname === location.pathname) return;
       if (/\.(svg|pdf|zip)$/.test(url.pathname)) return;
-
       event.preventDefault();
       doc.body.classList.add('leaving');
       setTimeout(() => { location.href = link.href; }, 180);
     });
-    // Restore the page when it comes back from the back/forward cache.
     addEventListener('pageshow', (event) => {
       if (event.persisted) doc.body.classList.remove('leaving');
     });
   }
-
-  /* ------------------------------------------------------------------ */
-  /* Publications: filter, copy citation, BibTeX download                */
-  /* ------------------------------------------------------------------ */
 
   function copyText(text, onDone) {
     const legacyCopy = () => {
@@ -286,7 +231,6 @@
   function initPublications() {
     const filterButtons = $$('[data-filter]');
     const status = $('#filter-status');
-
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
         filterButtons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
@@ -298,7 +242,6 @@
         if (status) status.textContent = `Showing ${shown} items.`;
       });
     });
-
     $$('.cite[data-cite]').forEach((button) => {
       button.addEventListener('click', () => {
         const label = $('span', button);
@@ -314,7 +257,6 @@
         });
       });
     });
-
     const download = $('#bib-dl');
     if (download) {
       download.addEventListener('click', () => {
@@ -333,20 +275,14 @@
     }
   }
 
-  /* ------------------------------------------------------------------ */
-  /* Resources: filter links by type                                     */
-  /* ------------------------------------------------------------------ */
-
   function initResourceFilter() {
     const buttons = $$('[data-kf]');
     const status = $('#kf-status');
-
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
         buttons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
         const kind = button.dataset.kf;
         let total = 0;
-
         $$('.lcol').forEach((column) => {
           let visible = 0;
           $$('li[data-k]', column).forEach((item) => {
@@ -358,15 +294,10 @@
           const counter = $('h3 span', column);
           if (counter) counter.textContent = visible;
         });
-
         if (status) status.textContent = `Showing ${total} links.`;
       });
     });
   }
-
-  /* ------------------------------------------------------------------ */
-  /* Logo fallback: favicon service first, then the monogram badge       */
-  /* ------------------------------------------------------------------ */
 
   function initLogoFallback() {
     const fallback = (img) => {
@@ -379,58 +310,29 @@
     };
     $$('.lg img').forEach((img) => {
       img.addEventListener('error', () => fallback(img));
-      // The error may have fired before this script ran.
       if (img.complete && img.currentSrc && img.naturalWidth === 0) fallback(img);
     });
   }
 
-  /* ------------------------------------------------------------------ */
-  /* Contact form: nothing is sent; visitors are pointed to LinkedIn     */
-  /* ------------------------------------------------------------------ */
-
-  function initContactForm() {
-    const form = $('#cf');
-    if (!form) return;
-
-    const status = $('#cf-status');
-
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (!status) return;
-
-      status.className = 'ok';
-      status.textContent = 'Thank you for your interest. Messages are not sent from this page. Please contact me on ';
-
-      const link = doc.createElement('a');
-      link.href = LINKEDIN_URL;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = 'LinkedIn';
-      status.appendChild(link);
-      status.appendChild(doc.createTextNode(' instead.'));
-    });
+  // Contact page cartoon: hide the figure if the image file is missing.
+  function initContactImage() {
+    const img = $('.cfun img');
+    if (!img) return;
+    const hide = () => { img.closest('.cfun').hidden = true; };
+    img.addEventListener('error', hide);
+    if (img.complete && img.naturalWidth === 0 && img.currentSrc) hide();
   }
-
-  /* ------------------------------------------------------------------ */
-  /* Content protection (deterrent only, see the note at the top)        */
-  /* ------------------------------------------------------------------ */
 
   function initContentProtection() {
     if (!ENABLE_CONTENT_PROTECTION) return;
-
-    // Form fields keep their menu so visitors can paste into the contact form.
     const isEditable = (target) =>
       target instanceof Element && target.closest('input, textarea, select, [contenteditable="true"]') !== null;
-
     doc.addEventListener('contextmenu', (event) => {
       if (!isEditable(event.target)) event.preventDefault();
     });
-
     doc.addEventListener('dragstart', (event) => {
       if (event.target instanceof HTMLImageElement) event.preventDefault();
     });
-
-    // event.code is layout-independent, so the shortcuts are caught on any keyboard.
     doc.addEventListener('keydown', (event) => {
       const mod = event.ctrlKey || event.metaKey;
       const plain = mod && !event.shiftKey && !event.altKey;
@@ -440,15 +342,12 @@
         event.code === 'F12' ||
         (mod && event.shiftKey && ['KeyI', 'KeyJ', 'KeyC'].includes(event.code)) ||
         (event.metaKey && event.altKey && ['KeyI', 'KeyJ', 'KeyC', 'KeyU'].includes(event.code));
-
       if (viewSource || savePage || devTools) {
         event.preventDefault();
         event.stopPropagation();
       }
     }, true);
   }
-
-  /* ------------------------------------------------------------------ */
 
   initTheme();
   initMenu();
@@ -459,6 +358,6 @@
   initPublications();
   initResourceFilter();
   initLogoFallback();
-  initContactForm();
+  initContactImage();
   initContentProtection();
 })();
